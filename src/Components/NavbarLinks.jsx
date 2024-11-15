@@ -19,13 +19,13 @@ const Links = [
 function NavbarLinks() {
     return (
         <>
-            <ul className="menu menu-horizontal gap-5  rounded-box">
-                {Links.map((NavbarLink) => {
-                    return <li>
-                        <Link key={NavbarLink.path} to={NavbarLink.path}>{NavbarLink.text}</Link>
-                    </li>
-                })}
-            </ul>
+
+            {Links.map((NavbarLink) => {
+                return <li key={NavbarLink.path}>
+                    <Link to={NavbarLink.path}>{NavbarLink.text}</Link>
+                </li>
+            })}
+
         </>
     )
 }
