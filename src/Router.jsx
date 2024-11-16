@@ -1,7 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 
+
+//pages
 import App from "./App";
 import { About, Contact, Home, LikedImages } from "./Pages";
+
+//actions 
+import { action as HomeAction } from "./Pages/Home";
 
 
 const router = createBrowserRouter([
@@ -11,7 +16,8 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home />
+                element: <Home />,
+                action: HomeAction
             },
             {
                 path: "/about",
@@ -22,8 +28,8 @@ const router = createBrowserRouter([
                 element: <Contact />
             },
             {
-                path:"/likedImages",
-                element: <LikedImages/>
+                path: "/likedImages",
+                element: <LikedImages />
             }
         ]
     }

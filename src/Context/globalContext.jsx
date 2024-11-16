@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useMemo, useReducer } from "react";
 
 export const GlobalContext = createContext()
 
@@ -8,6 +8,10 @@ const changeState = (state, action) => {
     switch (type) {
         case "ADD_IMAGES":
             return { ...state, images: [...state.images, ...payload] }
+        case "ADD_LIKE_IMAGES":
+            return { ...state, likedImages: [...state.likedImages, payload] }
+        default:
+            return state
     }
 }
 
@@ -20,7 +24,9 @@ export function GlobalContextProvider({ children }) {
 
     // console.log(state);
 
-    return (<GlobalContext.Provider value={{ ...state, dispatch }} >
+    const contextValue = useMemo(() => ({ ...state, dispatch }), [state, dispatch]);
+
+    return (<GlobalContext.Provider value={contextValue} >
         {children}
     </GlobalContext.Provider>
     )

@@ -9,9 +9,13 @@ import { RouterProvider } from 'react-router-dom'
 import router from './Router.jsx'
 import { GlobalContextProvider } from './Context/globalContext.jsx'
 
+//react toast 
+import { ToastContainer} from 'react-toastify';
+
 createRoot(document.getElementById('root')).render(
   <GlobalContextProvider>
     <RouterProvider router={router} />
+    <ToastContainer/>
   </GlobalContextProvider>
 
 

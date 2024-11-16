@@ -6,4 +6,7 @@
   .container {
     @apply mx-auto max-w-7xl
   }
+  .image-methods{
+    @apply absolute border p-1 rounded-full cursor-pointer invisible  text-fuchsia-50 opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300
+  }
 }
