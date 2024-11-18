@@ -1,16 +1,14 @@
 //custom hooks 
-import { ImageBox, Search } from "../Components"
 import { useFetch } from "../Hooks/useFetch"
-import { UseGlobalContext } from "../Hooks/useGlobalContext"
+
+//components
+import { ImageBox, Search } from "../Components"
 
 //react 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 //react router dom
 import { useActionData } from "react-router-dom"
-
-//masonary
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 //action 
 export const action = async ({ request }) => {
@@ -22,44 +20,53 @@ export const action = async ({ request }) => {
 export default function Home() {
 
   //useActionData
-  const dataParamFrom = useActionData()
-  console.log(dataParamFrom)
-
-  //context 
-  const { images, dispatch } = UseGlobalContext()
+  const searchParamFromAction = useActionData();
+  const [allImages, setAllImages] = useState([]);
   const [pageNumber, setPageNumber] = useState(1)
 
-  const { data, isPending, error } = useFetch(`https://api.unsplash.com/search/photos?client_id=${import.meta.env.VITE_ACCESS_KEY}&query=${dataParamFrom ? dataParamFrom : "all"}&page=${pageNumber}`)
+  const prevSearchParam = useRef(searchParamFromAction)
 
- 
+  useEffect(() => {
+    if (searchParamFromAction) {
+      console.log(searchParamFromAction);
+    }
+  }, [searchParamFromAction]);
+
+  const { data, isPending, error } = useFetch(`https://api.unsplash.com/search/photos?client_id=${import.meta.env.VITE_ACCESS_KEY}&query=${searchParamFromAction ?? "all"}&page=${pageNumber}`)
+
   useEffect(() => {
     if (data) {
-      dispatch({ type: "ADD_IMAGES", payload: data.results })
+      setAllImages((prevImages) => {
+        return pageNumber === 1 ? data.results : [...prevImages, ...data.results]
+      })
     }
   }, [data])
 
-  if (isPending) {
-    return <h1 className="text-center">Loading...</h1>
-  }
+  useEffect(() => {
+    if (searchParamFromAction != prevSearchParam.current) {
+      setAllImages([]);
+      setPageNumber(1)
+      prevSearchParam.current = searchParamFromAction
+    }
+  }, [searchParamFromAction])
 
+
+  if (error) {
+    return <h1 className="text-center">Error : {error}</h1>
+  }
 
   return (
     <>
-      <div className="my-5">
-        <Search />
-      </div>
+
       <div className="container py-5">
-        <ResponsiveMasonry
-          columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-        >
-          <Masonry gutter="10px">
-            {images.length > 0 ? images.map((image) => {
-              const { id, user, urls, links, alt_description } = image
-              return <ImageBox key={id} url={urls} alt={alt_description} links={links} image={image} />
-            }) : <p>data is undefiend</p>}
-          </Masonry>
-        </ResponsiveMasonry>
-        <button onClick={() => setPageNumber(pageNumber + 1)} className="w-full my-5 py-3 border rounded-md hover:bg-slate-400 transition-all duration-300">New Images</button>
+        <div className="my-5">
+          <Search />
+        </div>
+        {isPending && <h1 className="text-center my-5">Loading</h1>}
+        {allImages.length > 0 ? <ImageBox images={allImages} /> : <p>failed is not defind</p>}
+        <div className="my-10">
+          <button onClick={() => setPageNumber(pageNumber + 1)} className="btn btn-secondary btn-block">Page +1</button>
+        </div>
       </div>
     </>
   )

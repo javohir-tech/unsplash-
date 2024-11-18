@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 //react
 import { useEffect, useState } from "react";
-import { UseGlobalContext } from "../Hooks/useGlobalContext";
+
 
 
 function Navbar() {
