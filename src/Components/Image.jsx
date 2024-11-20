@@ -7,20 +7,25 @@ import { Link } from "react-router-dom";
 
 //react 
 import { useState } from "react";
-import { LikedImages } from "../Pages";
+import { useGlobalContext } from "../Hooks/useGlobalContext";
 
 function Image({ image }) {
+
+  //context
+  const { dispatch } = useGlobalContext()
 
   //data
   const { urls, links, user, alt_description } = image
 
   //liked 
-  const [likeImages, setLikesImages] = useState([])
-  console.log(likeImages)
+  const addLikesImages = (img) => {
+    dispatch({ type: "ADD_LIKED_IMAGE", payload: img })
+  }
+
 
   return (
     <div className="relative group">
-      <span className="top-4 right-4 image-methods" onClick={() => setLikesImages((prevImages) => [...prevImages, image])}>
+      <span className="top-4 right-4 image-methods" onClick={() => addLikesImages(image)}>
         <FaHeart className="w-5 h-5" />
       </span>
       <img src={urls.regular} alt={alt_description} className='rounded-md w-full' />
