@@ -9,6 +9,8 @@ import { useEffect, useState, useRef } from "react"
 
 //react router dom
 import { useActionData } from "react-router-dom"
+import { ThreeDots } from "react-loader-spinner"
+import { render } from "react-dom"
 
 //action 
 export const action = async ({ request }) => {
@@ -63,9 +65,20 @@ export default function Home() {
           <Search />
         </div>
         {isPending && <h1 className="text-center my-5">Loading</h1>}
-        {allImages.length > 0 ? <ImageBox images={allImages} /> : <p>failed is not defind</p>}
+        {allImages.length > 0 ? <ImageBox images={allImages} /> : <span >
+          <ThreeDots
+            visible={true}
+            height="50"
+            width="80%"
+            color="#463AA2"
+            radius="9"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass="max-w-96 mx-auto"
+          />
+        </span>}
         <div className="my-10">
-          <button onClick={() => setPageNumber(pageNumber + 1)} className="btn btn-secondary btn-block">Page +1</button>
+          <button onClick={() => setPageNumber(pageNumber + 1)} className="btn btn-secondary btn-block">Read More</button>
         </div>
       </div>
     </>
