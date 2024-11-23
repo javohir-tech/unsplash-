@@ -21,7 +21,7 @@ export default function LikedImages() {
               likedImages.length > 0 ?
                 likedImages.map((likedImage) => {
                   const { id } = likedImage
-                  return <Image key={id} image={likedImage} />
+                  return <Image key={id} image={likedImage} added={likedImages.some((img) => img.id == likedImage.id)} />
                 })
                 : <p className="text-center">yoqtirgan Rasmlar yo'q</p>
             }

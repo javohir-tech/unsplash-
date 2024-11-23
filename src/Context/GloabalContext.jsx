@@ -9,6 +9,11 @@ const changesate = (state, action) => {
     switch (type) {
         case "ADD_LIKED_IMAGE":
             return { ...state, likedImages: [...state.likedImages, payload] }
+        case "UNLIKE":
+            return {
+                ...state,
+                likedImages: state.likedImages.filter((image) => image.id != payload)
+            }
         default:
             return state
     }
