@@ -5,7 +5,8 @@ export const GlobalContext = createContext()
 
 const dataFromLocal = () => {
     return JSON.parse(localStorage.getItem("data-my-unsplash")) || {
-        likedImages: []
+        likedImages: [],
+        downloadImages: []
     }
 }
 
@@ -20,6 +21,13 @@ const changesate = (state, action) => {
                 ...state,
                 likedImages: state.likedImages.filter((image) => image.id != payload)
             }
+        case "DOWNLOAD":
+            return { ...state, downloadImages: [...state.downloadImages, payload] }
+        case "UNDOWNLOAD":
+            return{
+                ...state,
+                
+            }
         default:
             return state
     }
@@ -29,7 +37,7 @@ export function GlobalContextProvider({ children }) {
 
     const [state, dispatch] = useReducer(changesate, dataFromLocal())
 
-    // console.log(state)
+    console.log(state)
     useEffect(() => {
         return localStorage.setItem("data-my-unsplash", JSON.stringify(state))
     }, [state])

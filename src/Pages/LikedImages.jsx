@@ -2,6 +2,9 @@
 import { Image } from "../Components"
 import { useGlobalContext } from "../Hooks/useGlobalContext"
 
+//react router dom 
+import { Link } from "react-router-dom"
+
 //masonry
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
@@ -9,6 +12,13 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 export default function LikedImages() {
 
   const { likedImages, dispatch } = useGlobalContext()
+
+  if (likedImages.length == 0) {
+    return <div className=" flex flex-col container justify-center text-center h-full my-auto liked-image__content items-center">
+      <h1 className="mb-5 font-semibold text-lg">You have no favorite pictures!!!</h1>
+      <Link to="/" className="btn btn-primary" >Home</Link>
+    </div>
+  }
 
   return (
     <>

@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 //pages
 import App from "./App";
-import { About, Contact, Home, LikedImages, UserPage } from "./Pages";
+import { About, Contact, DownloadImages, Home, LikedImages, UserPage } from "./Pages";
 
 //actions 
 import { action as HomeAction } from "./Pages/Home";
@@ -34,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "/userpage/:id",
                 element: <UserPage />
+            },
+            {
+                path:"/downloadImages",
+                element:<DownloadImages/>
             }
         ]
     }

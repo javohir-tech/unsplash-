@@ -3,14 +3,19 @@ import { FcStackOfPhotos } from "react-icons/fc";
 import { IoIosHeart } from "react-icons/io";
 import { FaMoon } from "react-icons/fa"
 import { IoSunny } from "react-icons/io5";
+import { MdCloudDownload } from "react-icons/md";
 
 //components 
 import NavbarLinks from "./NavbarLinks";
+
 //react router dom 
 import { Link } from "react-router-dom";
 
 //react
 import { useEffect, useState } from "react";
+
+//custom hooks
+import { useGlobalContext } from "../Hooks/useGlobalContext";
 
 
 
@@ -33,7 +38,9 @@ function Navbar() {
     }, [theme])
 
     //context js 
-   
+    const { likedImages, downloadImages } = useGlobalContext()
+
+
 
     return (
         <>
@@ -56,10 +63,19 @@ function Navbar() {
                                 <NavbarLinks />
                             </ul>
                         </div>
-                        <div className='navbar-end flex items-center gap-3'>
+                        <div className='navbar-end flex items-center gap-5'>
+
                             <div>
-                                <Link to="/likedImages" >
+                                <Link to="/downloadImages" className="relative">
+                                    < MdCloudDownload className="w-6 h-6" />
+                                    <div className="badge absolute bottom-3 left-4 w-5 h-5 bg-stone-600 text-slate-100 rounded-full p-1">{downloadImages.length}</div>
+                                </Link>
+                            </div>
+
+                            <div>
+                                <Link to="/likedImages" className="relative">
                                     <IoIosHeart className="w-6 h-6" />
+                                    <div className="badge absolute bottom-3 left-4 w-5 h-5 bg-stone-600 text-slate-100 rounded-full p-1">{likedImages.length}</div>
                                 </Link>
                             </div>
 

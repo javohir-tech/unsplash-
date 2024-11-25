@@ -12,7 +12,7 @@ import { useGlobalContext } from "../Hooks/useGlobalContext";
 function Image({ image, added }) {
 
   //context
-  const { dispatch, likedImages } = useGlobalContext()
+  const { dispatch, likedImages, downloadImages } = useGlobalContext()
 
   //data
   const { urls, links, user, alt_description } = image
@@ -27,7 +27,17 @@ function Image({ image, added }) {
     }
   }
 
-  
+  const AddDownloadImage = (picture) => {
+    const allReadyDownload = downloadImages.some((img) => img.id == picture.id)
+
+    if (!allReadyDownload) {
+      dispatch({ type: "DOWNLOAD", payload: picture })
+    } else {
+      alert("qoshilgan ")
+    }
+  }
+
+
 
   return (
     <div className="relative group">
@@ -48,8 +58,10 @@ function Image({ image, added }) {
           <h3 className="text-slate-100">{user.name}</h3>
         </Link>
       </span>
-      <span className="bottom-4  right-4 image-methods">
-        <a rel="nofollow" download target="_blank" href={links.download + '&force=true'}><TbDownload className="w-5 h-5" /></a>
+      <span onClick={() => AddDownloadImage(image)} className="bottom-4  right-4 image-methods">
+        <a href={links.download + '&force=true'} download="image.jpg" target="_blank" rel="nofollow">
+          <TbDownload className="w-5 h-5" />
+        </a>
       </span>
     </div>
   )
