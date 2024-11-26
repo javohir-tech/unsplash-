@@ -37,7 +37,7 @@ export function GlobalContextProvider({ children }) {
 
     const [state, dispatch] = useReducer(changesate, dataFromLocal())
 
-    console.log(state)
+    // console.log(state)
     useEffect(() => {
         return localStorage.setItem("data-my-unsplash", JSON.stringify(state))
     }, [state])
