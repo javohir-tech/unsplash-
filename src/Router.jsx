@@ -1,18 +1,27 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 
 //pages
 import App from "./App";
-import { About, Contact, DownloadImages, Home, ImageInfo, LikedImages, UserPage } from "./Pages";
+import { About, Contact, DownloadImages, Home, ImageInfo, LikedImages, Login, Register, UserPage } from "./Pages";
 
 //actions 
 import { action as HomeAction } from "./Pages/Home";
+
+//components 
+import { ProtectedRotet } from "./Components";
+
+const user = false;
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: (
+            <ProtectedRotet user={user}>
+                <App />
+            </ProtectedRotet>
+        ),
         children: [
             {
                 index: true,
@@ -44,6 +53,14 @@ const router = createBrowserRouter([
                 element: <ImageInfo />
             }
         ]
+    },
+    {
+        path: "/login",
+        element: user ? <Navigate to="/" /> : <Login />
+    },
+    {
+        path: "/register",
+        element: user ? <Navigate to="/" /> : <Register />
     }
 ])
 
