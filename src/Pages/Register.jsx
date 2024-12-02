@@ -23,15 +23,16 @@ export const action = async ({ request }) => {
 
 
 export default function Register() {
-  
+
   const { singUpWithGoogle } = useRegister()
 
   return (
     <>
       <div className="flex h-screen w-full">
-        <div className="hidden w-[40%] bg-[url(https://picsum.photos/seed/picsum/900/1200)] bg-cover bg-center md:block"></div>
-        <div className="flex h-screen w-full items-center justify-center bg-[url(https://picsum.photos/seed/picsum/900/1200)] md:w-[60%] md:bg-none">
-          <div className="w-full max-w-96 px-3">
+        <div className="hidden w-[40%] bg-[url(https://picsum.photos/900/1200)] bg-cover bg-center md:block"></div>
+        <div className="fixed bg-black opacity-35 top-0 left-0 bottom-0 w-full md:hidden "></div>
+        <div className="flex h-screen w-full items-center justify-center bg-[url(https://picsum.photos/900/1200)] md:w-[60%] md:bg-none">
+          <div className="w-full max-w-96 px-3 z-30">
             <Form method="POST">
               <h1 className="text-center text-4xl font-medium">Register</h1>
               <div className="my-5 flex flex-col gap-5">
