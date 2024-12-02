@@ -21,13 +21,11 @@ import { action as RegisterAction } from "./Pages/Register";
 //components
 import { ProtectedRotet } from "./Components";
 
-const user = false;
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <ProtectedRotet user={user}>
+      <ProtectedRotet>
         <App />
       </ProtectedRotet>
     ),
@@ -63,13 +61,22 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/login",
-    element: user ? <Navigate to="/" /> : <Login />,
+    element:(
+      <ProtectedRotet redirectIfLoggedIn>
+        <Login/>
+      </ProtectedRotet>
+    )
   },
   {
     path: "/register",
-    element: user ? <Navigate to="/" /> : <Register />,
+    element: (
+      <ProtectedRotet redirectIfLoggedIn>
+        <Register/>
+      </ProtectedRotet>
+    ),
     action: RegisterAction,
   },
 ]);

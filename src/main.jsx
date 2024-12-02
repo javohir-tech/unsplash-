@@ -9,6 +9,7 @@ import router from './Router.jsx'
 
 //react toast 
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //context
 import { GlobalContextProvider } from './Context/GloabalContext.jsx';
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
   <>
     <GlobalContextProvider>
       <RouterProvider router={router} />
+      <ToastContainer position="bottom-right" />
     </GlobalContextProvider>
 
   </>

@@ -2,15 +2,15 @@ import { createContext, useEffect, useReducer } from "react";
 
 export const GlobalContext = createContext();
 
-const dataFromLocal = () => {
-  return (
-    JSON.parse(localStorage.getItem("data-my-unsplash")) || {
-      likedImages: [],
-      downloadImages: [],
-      userData: [],
-    }
-  );
-};
+// const dataFromLocal = () => {
+//   return (
+//     JSON.parse(localStorage.getItem("data-my-unsplash")) || {
+//       likedImages: [],
+//       downloadImages: [],
+//       userData: [],
+//     }
+//   );
+// };
 
 const changesate = (state, action) => {
   const { type, payload } = action;
@@ -25,15 +25,21 @@ const changesate = (state, action) => {
       };
     case "DOWNLOAD":
       return { ...state, downloadImages: [...state.downloadImages, payload] };
-    case "USERDATA":
-      return {...state, userData : payload}
+    case "LOGIN":
+      return { ...state, user: payload };
+    case "UNLOGIN":
+      return { ...state, user: null }
     default:
       return state;
   }
 };
 
 export function GlobalContextProvider({ children }) {
-  const [state, dispatch] = useReducer(changesate, dataFromLocal());
+  const [state, dispatch] = useReducer(changesate, {
+    likedImages: [],
+    downloadImages: [],
+    user: null,
+  });
 
   console.log(state)
   useEffect(() => {

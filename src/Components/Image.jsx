@@ -25,6 +25,7 @@ function Image({ image, added }) {
     } else {
       dispatch({ type: "UNLIKE", payload: image.id })
     }
+    
   }
 
   const AddDownloadImage = (picture) => {

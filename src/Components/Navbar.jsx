@@ -38,11 +38,9 @@ function Navbar() {
     }, [theme])
 
     //context js 
-    const { likedImages, downloadImages } = useGlobalContext()
-
-
-
+    const { likedImages, downloadImages, user } = useGlobalContext()
     return (
+
         <>
             <nav className="bg-base-200">
                 <div className="container">
@@ -89,10 +87,34 @@ function Navbar() {
                                 {/* moon icon */}
                                 <FaMoon className='swap-on h-5 w-5 fill-current' />
                             </label>
+                            <div className="flex items-center gap-3">
+                                <p>{user.displayName.split(" ")[0]}</p>
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-8 rounded-full">
+                                            <img
+                                                alt="Tailwind CSS Navbar component"
+                                                src={user.photoURL} />
+                                        </div>
+                                    </div>
+                                    <ul
+                                        tabIndex={0}
+                                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                        <li>
+                                            <a className="justify-between">
+                                                Profile
+                                                <span className="badge">New</span>
+                                            </a>
+                                        </li>
+                                        <li><a>Settings</a></li>
+                                        <li><a>Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </header>
-                </div>
-            </nav>
+                </div >
+            </nav >
         </>
     )
 }

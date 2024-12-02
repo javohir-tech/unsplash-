@@ -7,6 +7,7 @@ import { ImageBox, Search } from "../Components"
 //react 
 import { useEffect, useState, useRef } from "react"
 
+
 //react router dom
 import { useActionData } from "react-router-dom"
 import { ThreeDots } from "react-loader-spinner"

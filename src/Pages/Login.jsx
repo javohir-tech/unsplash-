@@ -31,6 +31,7 @@ export default function Login() {
                 <FcGoogle className="h-4 w-4" />
               </button>
             </div>
+            
             <div className="text-center mt-3 link link-secondary text-white md:text-secondary">
               <Link to="/register">You have not accaount ?</Link>
             </div>

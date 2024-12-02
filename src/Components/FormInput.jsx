@@ -11,6 +11,7 @@ function FormInput({ type, placeholder, name }) {
         placeholder={placeholder}
         name={name}
       />
+      
       {placeholder === "Search" && <FaSearch className="h-4 w-4 opacity-70" />}
       {placeholder === "Full Name" && <FaUser className="h-4 w-4 opacity-70" />}
       {placeholder === "Email" && <MdEmail className="h-5 w-5 opacity-70" />}
