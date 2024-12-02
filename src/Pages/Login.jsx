@@ -5,8 +5,10 @@ import { FormInput } from "../Components";
 
 //icons
 import { FcGoogle } from "react-icons/fc";
+import { useRegister } from "../Hooks/useRegister";
 
 export default function Login() {
+  const {singUpWithGoogle}= useRegister()
   return (
     <div className="flex h-screen w-full">
       <div className="hidden w-[40%] bg-[url(https://picsum.photos/seed/picsum/900/1200)] bg-cover bg-center md:block"></div>
@@ -26,7 +28,7 @@ export default function Login() {
               <button type="submit" className="btn btn-primary btn-sm grow md:btn-md">
                 Register
               </button>
-              <button type="button" className="btn btn-secondary btn-sm grow md:btn-md">
+              <button onClick={singUpWithGoogle} type="button" className="btn btn-secondary btn-sm grow md:btn-md">
                 <span>Google</span>
                 <FcGoogle className="h-4 w-4" />
               </button>
