@@ -1,4 +1,5 @@
-import { Form, Link } from "react-router-dom";
+//react router dom 
+import { Form, Link, useActionData } from "react-router-dom";
 
 //comonents
 import { FormInput } from "../Components";
@@ -6,10 +7,39 @@ import { FormInput } from "../Components";
 //icons
 import { FcGoogle } from "react-icons/fc";
 
+//custom hooks 
 import { useRegister } from "../Hooks/useRegister";
+import { useGlobalContext } from "../Hooks/useGlobalContext";
+
+//react toast 
+import { toast } from "react-toastify";
+
+//react 
+import { useEffect } from "react";
+
+export const action = async ({ request }) => {
+  const formData =await request.formData()
+  let email = formData.get("email");
+  let password = formData.get("password");
+  return {
+    email,
+    password,
+  };
+}
 
 export default function Login() {
-  const {singUpWithGoogle}= useRegister()
+  const { singUpWithGoogle } = useRegister()
+
+  const { dispatch } = useGlobalContext()
+
+  const inputData = useActionData()
+  useEffect(() => {
+    if (inputData) {
+      // dispatch()
+      console.log(inputData)
+    }
+  }, [inputData])
+
   return (
     <div className="flex h-screen w-full">
       <div className="hidden w-[40%] bg-[url(https://picsum.photos/seed/picsum/900/1200)] bg-cover bg-center md:block"></div>
@@ -34,7 +64,7 @@ export default function Login() {
                 <FcGoogle className="h-4 w-4" />
               </button>
             </div>
-            
+
             <div className="text-center mt-3 link link-secondary text-white md:text-secondary">
               <Link to="/register">You have not accaount ?</Link>
             </div>

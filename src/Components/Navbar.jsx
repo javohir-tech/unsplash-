@@ -108,7 +108,7 @@ function Navbar() {
                                         <div className="w-8 rounded-full">
                                             <img
                                                 alt="Tailwind CSS Navbar component"
-                                                src={user.photoURL} />
+                                                src={user?.photoURL} />
                                         </div>
                                     </div>
                                     <ul

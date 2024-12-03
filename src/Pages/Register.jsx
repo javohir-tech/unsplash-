@@ -1,3 +1,4 @@
+//react dom
 import { Form, Link, useActionData } from "react-router-dom";
 
 //comonents
@@ -7,25 +8,47 @@ import { FormInput } from "../Components";
 import { FcGoogle } from "react-icons/fc";
 import { useRegister } from "../Hooks/useRegister";
 
+//react toast
+import { toast } from "react-toastify";
+
+//react hooks
+import { useEffect } from "react";
+
+//custom hooks 
+import { useGlobalContext } from "../Hooks/useGlobalContext";
+
 export const action = async ({ request }) => {
   let formData = await request.formData();
-  let adminname = formData.get("adminname");
+  let displayName = formData.get("displayName");
   let email = formData.get("email");
   let password = formData.get("password");
-  let passwordrestart = formData.get("passwordrestart");
-  return {
-    adminname,
-    email,
-    password,
-    passwordrestart,
-  };
+  let confirm_password = formData.get("confirm_password");
+  if (password == confirm_password) {
+    return {
+      displayName,
+      email,
+      password,
+      confirm_password,
+    };
+  } else {
+    toast.warn("Passwor is not right !")
+    return null
+  }
 };
-
 
 export default function Register() {
 
   const { singUpWithGoogle } = useRegister()
-  
+
+  const { dispatch } = useGlobalContext()
+
+  const inputData = useActionData()
+
+  useEffect(() => {
+    if (inputData) {
+      dispatch({ type: "LOGIN", payload: inputData })
+    }
+  }, [inputData])
 
   return (
     <>
@@ -39,7 +62,7 @@ export default function Register() {
               <div className="my-5 flex flex-col gap-5">
                 <FormInput
                   placeholder="Full Name"
-                  name="adminname"
+                  name="displayName"
                   type="text"
                 />
                 <FormInput placeholder="Email" name="email" type="email" />
@@ -50,7 +73,7 @@ export default function Register() {
                 />
                 <FormInput
                   placeholder="Password Restart"
-                  name="passwordrestart"
+                  name="confirm_password"
                   type="password"
                 />
               </div>

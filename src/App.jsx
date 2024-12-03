@@ -18,6 +18,7 @@ import MainLayout from './Layout/MainLayout'
 //actions
 import { action as HomeAction } from "./Pages/Home";
 import { action as RegisterAction } from "./Pages/Register";
+import { action as LoginAction } from "./Pages/Login";
 
 //components
 import { ProtectedRotet } from "./Components";
@@ -81,7 +82,8 @@ function App() {
         <ProtectedRotet redirectIfLoggedIn>
           <Login />
         </ProtectedRotet>
-      )
+      ),
+      action : LoginAction,
     },
     {
       path: "/register",
