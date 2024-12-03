@@ -17,6 +17,10 @@ import { useEffect, useState } from "react";
 //custom hooks
 import { useGlobalContext } from "../Hooks/useGlobalContext";
 
+//firebase
+import { auth } from '../firebase/useFireBaseConfig'
+import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 
 function Navbar() {
@@ -32,13 +36,23 @@ function Navbar() {
         setTheme(newTheme)
     }
 
+    const singOutUser = async () => {
+        try{
+            await signOut(auth)
+            dispatch({type:"UNLOGIN"})
+            toast.success("See you soon")
+        }catch(error){
+            toast.error(error.message)
+        }
+    }
+
     useEffect(() => {
         localStorage.setItem("theme", theme)
         document.documentElement.setAttribute("data-theme", theme)
     }, [theme])
 
     //context js 
-    const { likedImages, downloadImages, user } = useGlobalContext()
+    const { likedImages, downloadImages, user, dispatch } = useGlobalContext()
     return (
 
         <>
@@ -107,7 +121,7 @@ function Navbar() {
                                             </a>
                                         </li>
                                         <li><a>Settings</a></li>
-                                        <li><a>Logout</a></li>
+                                        <li><button onClick={singOutUser}>Logout</button></li>
                                     </ul>
                                 </div>
                             </div>

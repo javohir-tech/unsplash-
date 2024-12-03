@@ -97,11 +97,7 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch({ type: "LOGIN", payload: user })
-      } else {
-        toast.warn("already singin")
-      }
+      dispatch({ type: "LOGIN", payload: user })
       dispatch({ type: "AUTH_READY" })
     });
   }, [])
