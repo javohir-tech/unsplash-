@@ -25,6 +25,7 @@ export const action = async ({ request }) => {
 export default function Register() {
 
   const { singUpWithGoogle } = useRegister()
+  
 
   return (
     <>

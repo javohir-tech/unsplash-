@@ -10,6 +10,7 @@ export default function ProtectedRotet({ children, redirectIfLoggedIn }) {
 
     if (!redirectIfLoggedIn && !user) {
         return <Navigate to="/login" />
+        
     }
 
     return children

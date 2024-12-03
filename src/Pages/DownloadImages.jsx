@@ -24,6 +24,7 @@ export default function DownloadImages() {
         <Masonry gutter="10px">
           {downloadImages.map((image) => {
             return <Image key={image.id} image={image} />
+            
           })}
         </Masonry>
       </ResponsiveMasonry>

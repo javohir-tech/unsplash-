@@ -67,16 +67,7 @@ export default function Home() {
         </div>
         {isPending && <h1 className="text-center my-5">Loading</h1>}
         {allImages.length > 0 ? <ImageBox images={allImages} /> : <span >
-          <ThreeDots
-            visible={true}
-            height="50"
-            width="80%"
-            color="#463AA2"
-            radius="9"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClass="max-w-96 mx-auto"
-          />
+         <h1 className="text-center">Loading...</h1>
         </span>}
         <div className="my-10">
           <button onClick={() => setPageNumber(pageNumber + 1)} className="btn btn-secondary btn-block">Read More</button>

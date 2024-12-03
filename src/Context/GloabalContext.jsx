@@ -27,8 +27,8 @@ const changesate = (state, action) => {
       return { ...state, downloadImages: [...state.downloadImages, payload] };
     case "LOGIN":
       return { ...state, user: payload };
-    case "UNLOGIN":
-      return { ...state, user: null }
+    case "AUTH_READY":
+      return { ...state, alreadyAuth: true }
     default:
       return state;
   }
@@ -39,6 +39,7 @@ export function GlobalContextProvider({ children }) {
     likedImages: [],
     downloadImages: [],
     user: null,
+    alreadyAuth: false
   });
 
   console.log(state)

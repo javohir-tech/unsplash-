@@ -11,7 +11,7 @@ function search() {
             <FormInput type="search" placeholder="Search" name="Search" />
             <button className="btn btn-primary md:hidden btn-sm">Search</button>
         </Form>
-    )
+    ) 
 }
 
 export default search
