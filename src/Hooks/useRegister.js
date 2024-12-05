@@ -10,7 +10,6 @@ export const useRegister = () => {
     const { dispatch } = useGlobalContext()
     const singUpWithGoogle = () => {
         const provider = new GoogleAuthProvider();
-
         signInWithPopup(auth, provider)
             .then((result) => {
                 console.log(result)

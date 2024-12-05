@@ -9,16 +9,14 @@ import { FcGoogle } from "react-icons/fc";
 
 //custom hooks 
 import { useRegister } from "../Hooks/useRegister";
-import { useGlobalContext } from "../Hooks/useGlobalContext";
+import { useLogin } from "../Hooks/useLogin";
 
-//react toast 
-import { toast } from "react-toastify";
-
-//react 
+//react hooks
 import { useEffect } from "react";
 
+
 export const action = async ({ request }) => {
-  const formData =await request.formData()
+  const formData = await request.formData()
   let email = formData.get("email");
   let password = formData.get("password");
   return {
@@ -30,13 +28,13 @@ export const action = async ({ request }) => {
 export default function Login() {
   const { singUpWithGoogle } = useRegister()
 
-  const { dispatch } = useGlobalContext()
+  const { loginWithGoogle } = useLogin()
 
   const inputData = useActionData()
   useEffect(() => {
     if (inputData) {
-      // dispatch()
-      console.log(inputData)
+      loginWithGoogle(loginWithGoogle(inputData.email, inputData.password))
+      console.log(inputData.email, inputData.password);
     }
   }, [inputData])
 

@@ -31,7 +31,6 @@ import { onAuthStateChanged } from "firebase/auth";
 
 //context
 import { useGlobalContext } from './Hooks/useGlobalContext';
-import { toast } from 'react-toastify';
 
 function App() {
   const { dispatch, alreadyAuth } = useGlobalContext()
