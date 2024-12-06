@@ -59,19 +59,19 @@ export default function Home() {
   }
 
   return (
-    <>     
-     <div className="container py-5">
-      <div className="my-5">
-        <Search />
+    <>
+      <div className="container py-5">
+        <div className="my-5">
+          <Search />
+        </div>
+        {isPending && <h1 className="text-center my-5">Loading</h1>}
+        {allImages.length > 0 ? <ImageBox images={allImages} /> : <span >
+          <h1 className="text-center">Loading...</h1>
+        </span>}
+        <div className="my-10">
+          <button onClick={() => setPageNumber(pageNumber + 1)} className="btn btn-secondary btn-block">Read More</button>
+        </div>
       </div>
-      {isPending && <h1 className="text-center my-5">Loading</h1>}
-      {allImages.length > 0 ? <ImageBox images={allImages} /> : <span >
-        <h1 className="text-center">Loading...</h1>
-      </span>}
-      <div className="my-10">
-        <button onClick={() => setPageNumber(pageNumber + 1)} className="btn btn-secondary btn-block">Read More</button>
-      </div>
-    </div>
     </>
   )
 }

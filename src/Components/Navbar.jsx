@@ -102,7 +102,7 @@ function Navbar() {
                                 <FaMoon className='swap-on h-5 w-5 fill-current' />
                             </label>
                             <div className="flex items-center gap-3">
-                                <p>{user.displayName.split(" ")[0]}</p>
+                                <p>{ user.displayName?.split(" ")[0]}</p>
                                 <div className="dropdown dropdown-end">
                                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                         <div className="w-8 rounded-full">

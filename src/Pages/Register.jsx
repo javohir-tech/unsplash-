@@ -28,7 +28,6 @@ export const action = async ({ request }) => {
       displayName,
       email,
       password,
-      confirm_password,
     };
   } else {
     toast.warn("Passwor is not right !")
@@ -38,15 +37,13 @@ export const action = async ({ request }) => {
 
 export default function Register() {
 
-  const { singUpWithGoogle } = useRegister()
-
-  const { dispatch } = useGlobalContext()
+  const { singUpWithGoogle, registerWithEmailAndPassword } = useRegister()
 
   const inputData = useActionData()
 
   useEffect(() => {
     if (inputData) {
-      dispatch({ type: "LOGIN", payload: inputData })
+      registerWithEmailAndPassword(inputData.displayName, inputData.email, inputData.password)
     }
   }, [inputData])
 

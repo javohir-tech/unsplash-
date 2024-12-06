@@ -1,25 +1,24 @@
-//firebase
 import { auth } from '../firebase/useFireBaseConfig'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-
-//toast
-import { toast } from "react-toastify";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 //custom hooks
-import { useGlobalContext } from "./useGlobalContext";
+import { useGlobalContext } from './useGlobalContext';
+import { toast } from 'react-toastify';
+
 
 export const useLogin = () => {
     const { dispatch } = useGlobalContext()
-    const loginWithGoogle = () => {
-        createUserWithEmailAndPassword(auth, email, password)
+    const loginWithEmail = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user
+                const user = userCredential.user;
                 dispatch({ type: "LOGIN", payload: user })
-                toast.success("Welcome")
+                toast.success("WELCOME BITCH")
             })
             .catch((error) => {
-                toast.error(error.message)
+                const errorMessage = error.message;
+                toast.error(errorMessage)
             });
     }
-    return { loginWithGoogle }
+    return { loginWithEmail }
 }

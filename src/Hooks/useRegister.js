@@ -1,6 +1,6 @@
 // google firebase
 import { auth } from '../firebase/useFireBaseConfig'
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // context
 import { useGlobalContext } from './useGlobalContext';
@@ -21,6 +21,25 @@ export const useRegister = () => {
                 toast.warn(errorMessage);
             });
     }
-    return { singUpWithGoogle }
-    
+
+    const registerWithEmailAndPassword = (displayName, email, password) => {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(async (userCredential) => {
+                const user = userCredential.user;
+
+                await updateProfile(auth.currentUser, {
+                    displayName: displayName,
+                    photoURL: `https://api.dicebear.com/9.x/initials/svg?seed=${displayName}`
+                })
+
+                dispatch({ type: "LOGIN", payload: user })
+                toast.success("WELCOME BITCH")
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+            })
+    }
+    return { singUpWithGoogle, registerWithEmailAndPassword }
+
 }

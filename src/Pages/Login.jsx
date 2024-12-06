@@ -28,13 +28,12 @@ export const action = async ({ request }) => {
 export default function Login() {
   const { singUpWithGoogle } = useRegister()
 
-  const { loginWithGoogle } = useLogin()
+  const { loginWithEmail } = useLogin()
 
   const inputData = useActionData()
   useEffect(() => {
     if (inputData) {
-      loginWithGoogle(loginWithGoogle(inputData.email, inputData.password))
-      console.log(inputData.email, inputData.password);
+      loginWithEmail(inputData.email, inputData.password)
     }
   }, [inputData])
 
