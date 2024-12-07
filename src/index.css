@@ -4,7 +4,7 @@
 
 @layer components {
   .container {
-    @apply mx-auto max-w-7xl
+    @apply mx-auto max-w-6xl
   }
   .image-methods{
     @apply absolute border flex

@@ -44,7 +44,7 @@ export function GlobalContextProvider({ children }) {
     alreadyAuth: false
   });
 
-  console.log(state)
+  // console.log(state)
   useEffect(() => {
     return localStorage.setItem("data-my-unsplash", JSON.stringify(state));
   }, [state]);

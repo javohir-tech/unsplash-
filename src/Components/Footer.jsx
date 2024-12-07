@@ -4,7 +4,7 @@ import { FaInstagram, FaYoutube } from "react-icons/fa6";
 
 export default function Footer() {
     return (
-        <div className='bg-neutral '>
+        <div className="bg-neutral">
             <footer className="footer container text-neutral-content items-center p-4">
                 <aside className="grid-flow-col items-center">
                     <svg
