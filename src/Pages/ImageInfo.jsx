@@ -12,6 +12,9 @@ import { useEffect, useState } from "react"
 import { FaHeart } from "react-icons/fa6";
 import { TbDownload } from "react-icons/tb";
 
+//fireStrore
+import { useFireStore } from "../Hooks/useFireStore";
+
 export default function ImageInfo() {
 
   const { id } = useParams()
@@ -27,6 +30,7 @@ export default function ImageInfo() {
 
   const { urls, created_at, user, views, links } = imageInfo
 
+  const { addDocuments, deleteDocument } = useFireStore()
 
   if (isPending) {
     return <h1 className="text-center">Loading...</h1>
@@ -41,9 +45,9 @@ export default function ImageInfo() {
     const allReadyAdded = likedImages.some((num) => num.id === img.id)
 
     if (!allReadyAdded) {
-      dispatch({ type: "ADD_LIKED_IMAGE", payload: img })
+      addDocuments("likedImages", img.id, img)
     } else {
-      dispatch({ type: "UNLIKE", payload: img.id })
+      deleteDocument("likedImages", img.id)
     }
   }
 

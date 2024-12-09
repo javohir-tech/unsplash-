@@ -9,10 +9,16 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useGlobalContext } from "../Hooks/useGlobalContext";
 
+//fireStore
+import { useFireStore } from "../Hooks/useFireStore";
+
 function Image({ image, added }) {
 
   //context
   const { dispatch, likedImages, downloadImages } = useGlobalContext()
+
+  //fireBase
+  const { addDocuments , deleteDocument } = useFireStore()
 
   //data
   const { urls, links, user, alt_description } = image
@@ -21,11 +27,11 @@ function Image({ image, added }) {
   const addLikesImages = (img) => {
     const allReadyAdded = likedImages.some((image) => image.id === img.id)
     if (!allReadyAdded) {
-      dispatch({ type: "ADD_LIKED_IMAGE", payload: img })
+      addDocuments("likedImages", img.id, img)
     } else {
-      dispatch({ type: "UNLIKE", payload: image.id })
+      deleteDocument("likedImages", img.id)
     }
-    
+
   }
 
   const AddDownloadImage = (picture) => {

@@ -31,7 +31,6 @@ export const useRegister = () => {
                     displayName: displayName,
                     photoURL: `https://api.dicebear.com/9.x/initials/svg?seed=${displayName}`
                 })
-
                 dispatch({ type: "LOGIN", payload: user })
                 toast.success("WELCOME BITCH")
             })

@@ -1,28 +1,14 @@
 import { createContext, useEffect, useReducer } from "react";
+import { useCollection } from "../Hooks/useCollection";
 
 export const GlobalContext = createContext();
-
-// const dataFromLocal = () => {
-//   return (
-//     JSON.parse(localStorage.getItem("data-my-unsplash")) || {
-//       likedImages: [],
-//       downloadImages: [],
-//       userData: [],
-//     }
-//   );
-// };
 
 const changesate = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case "ADD_LIKED_IMAGE":
-      return { ...state, likedImages: [...state.likedImages, payload] };
-    case "UNLIKE":
-      return {
-        ...state,
-        likedImages: state.likedImages.filter((image) => image.id != payload),
-      };
+      return { ...state, likedImages: payload };
     case "DOWNLOAD":
       return { ...state, downloadImages: [...state.downloadImages, payload] };
     case "LOGIN":
@@ -37,6 +23,7 @@ const changesate = (state, action) => {
 };
 
 export function GlobalContextProvider({ children }) {
+  const { data: likedImages } = useCollection("likedImages")
   const [state, dispatch] = useReducer(changesate, {
     likedImages: [],
     downloadImages: [],
@@ -45,9 +32,12 @@ export function GlobalContextProvider({ children }) {
   });
 
   // console.log(state)
+
   useEffect(() => {
-    return localStorage.setItem("data-my-unsplash", JSON.stringify(state));
-  }, [state]);
+    if (likedImages) {
+      dispatch({ type: "ADD_LIKED_IMAGE", payload: likedImages })
+    }
+  }, [likedImages]);
 
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
