@@ -36,18 +36,20 @@ export default function ImageInfo() {
     return <h1 className="text-center">Loading...</h1>
   }
 
-
   //context
   const { dispatch, likedImages, downloadImages } = useGlobalContext()
   console.log(likedImages)
 
   const addLikedImages = (img) => {
-    const allReadyAdded = likedImages.some((num) => num.id === img.id)
+    
+    const allReadyAdded = likedImages.find((num) => {
+      return num.id === img.id
+    })
 
     if (!allReadyAdded) {
-      addDocuments("likedImages", img.id, img)
+      addDocuments("likedImages", img)
     } else {
-      deleteDocument("likedImages", img.id)
+      deleteDocument("likedImages", allReadyAdded._id)
     }
   }
 

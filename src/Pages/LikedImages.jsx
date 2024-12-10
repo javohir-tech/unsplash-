@@ -11,7 +11,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 export default function LikedImages() {
 
-  const { likedImages, dispatch } = useGlobalContext()
+  const { likedImages } = useGlobalContext()
 
   if (likedImages.length == 0) {
     return <div className=" flex flex-col container justify-center text-center h-full my-auto liked-image__content items-center">

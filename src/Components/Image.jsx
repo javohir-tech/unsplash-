@@ -5,8 +5,7 @@ import { TbDownload } from "react-icons/tb";
 //react router dom
 import { Link } from "react-router-dom";
 
-//react 
-import { useState } from "react";
+//context 
 import { useGlobalContext } from "../Hooks/useGlobalContext";
 
 //fireStore
@@ -25,13 +24,16 @@ function Image({ image, added }) {
 
   //liked 
   const addLikesImages = (img) => {
-    const allReadyAdded = likedImages.some((image) => image.id === img.id)
-    if (!allReadyAdded) {
-      addDocuments("likedImages", img.id, img)
-    } else {
-      deleteDocument("likedImages", img.id)
-    }
+    
+    const allReadyAdded = likedImages.find((image) => {
+      return  image.id == img.id
+    })
 
+    if (!allReadyAdded) {
+      addDocuments("likedImages", img)
+    } else {
+      deleteDocument("likedImages", allReadyAdded._id)
+    }
   }
 
   const AddDownloadImage = (picture) => {
