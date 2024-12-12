@@ -14,23 +14,23 @@ import { useFireStore } from "../Hooks/useFireStore";
 function Image({ image, added }) {
 
   //context
-  const { dispatch, likedImages, downloadImages } = useGlobalContext()
+  const { dispatch, likedImages, downloadImages, user: authUser } = useGlobalContext()
 
   //fireBase
-  const { addDocuments , deleteDocument } = useFireStore()
+  const { addDocuments, deleteDocument } = useFireStore()
 
   //data
   const { urls, links, user, alt_description } = image
 
   //liked 
   const addLikesImages = (img) => {
-    
+
     const allReadyAdded = likedImages.find((image) => {
-      return  image.id == img.id
+      return image.id == img.id
     })
 
     if (!allReadyAdded) {
-      addDocuments("likedImages", img)
+      addDocuments("likedImages", { ...img, uid: authUser.uid })
     } else {
       deleteDocument("likedImages", allReadyAdded._id)
     }

@@ -23,13 +23,15 @@ const changesate = (state, action) => {
 };
 
 export function GlobalContextProvider({ children }) {
-  const { data: likedImages } = useCollection("likedImages")
+ 
   const [state, dispatch] = useReducer(changesate, {
     likedImages: [],
     downloadImages: [],
     user: null,
     alreadyAuth: false
   });
+
+ const { data: likedImages } = useCollection("likedImages" , ["uid", "==",  state.user && state.user.uid])
 
   // console.log(state)
 

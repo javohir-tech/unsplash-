@@ -37,17 +37,17 @@ export default function ImageInfo() {
   }
 
   //context
-  const { dispatch, likedImages, downloadImages } = useGlobalContext()
+  const { dispatch, likedImages, downloadImages, user: authUser } = useGlobalContext()
   console.log(likedImages)
 
   const addLikedImages = (img) => {
-    
+
     const allReadyAdded = likedImages.find((num) => {
       return num.id === img.id
     })
 
     if (!allReadyAdded) {
-      addDocuments("likedImages", img)
+      addDocuments("likedImages", { ...img, uid: authUser.uid })
     } else {
       deleteDocument("likedImages", allReadyAdded._id)
     }
