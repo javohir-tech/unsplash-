@@ -2,7 +2,7 @@
 import { Form, Link, useActionData } from "react-router-dom";
 
 //comonents
-import { FormInput } from "../Components";
+import { FormInput, Modal } from "../Components";
 
 //icons
 import { FcGoogle } from "react-icons/fc";
@@ -19,6 +19,12 @@ export const action = async ({ request }) => {
   const formData = await request.formData()
   let email = formData.get("email");
   let password = formData.get("password");
+  let passwordReset = formData.get("passwordReset")
+
+  if (passwordReset?.trim()) {
+    return { passwordReset }
+  }
+
   return {
     email,
     password,
@@ -31,14 +37,16 @@ export default function Login() {
   const { loginWithEmail } = useLogin()
 
   const inputData = useActionData()
+
   useEffect(() => {
-    if (inputData) {
+    if (inputData?.email && inputData?.password) {
       loginWithEmail(inputData.email, inputData.password)
     }
   }, [inputData])
 
   return (
     <div className="flex h-screen w-full">
+      <Modal />
       <div className="hidden w-[40%] bg-[url(https://picsum.photos/seed/picsum/900/1200)] bg-cover bg-center md:block"></div>
       <div className="flex h-screen w-full items-center justify-center bg-[url(https://picsum.photos/seed/picsum/900/1200)] md:w-[60%] md:bg-none">
         <div className="w-full max-w-96 px-3">
@@ -61,8 +69,8 @@ export default function Login() {
                 <FcGoogle className="h-4 w-4" />
               </button>
             </div>
-
-            <div className="text-center mt-3 link link-secondary text-white md:text-secondary">
+            <div className="flex justify-between align-middle text-center mt-3 link link-secondary text-white md:text-secondary">
+              <button type="button" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button>
               <Link to="/register">You have not accaount ?</Link>
             </div>
           </Form>

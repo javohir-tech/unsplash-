@@ -48,7 +48,7 @@ export default function ImageInfo() {
 
     if (!allReadyAdded) {
       addDocuments("likedImages", { ...img, uid: authUser.uid })
-    } else {
+    } else {``
       deleteDocument("likedImages", allReadyAdded._id)
     }
   }
@@ -59,7 +59,7 @@ export default function ImageInfo() {
       dispatch({ type: "DOWNLOAD", payload: img })
       window.open(links?.download + '&force=true', "_blank")
     } else {
-      alert("qoshilgan")
+      alert("qoshilgan")  
     }
   }
 
