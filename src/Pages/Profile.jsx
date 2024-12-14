@@ -9,11 +9,10 @@ import { toast } from "react-toastify";
 export default function Profile() {
     const { user } = useGlobalContext()
     // console.log(user);
-
     const SendEmailVerifaid = () => {
         if (auth.currentUser) {
-            sendEmailVerification(auth.currentUser, 
-                {url: "http://localhost:5173/profile"}
+            sendEmailVerification(auth.currentUser,
+                { url: "http://localhost:5173/profile" }
             )
                 .then(() => {
                     toast.success("Email verification sent!");

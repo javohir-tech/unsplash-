@@ -70,7 +70,7 @@ export default function Login() {
               </button>
             </div>
             <div className="flex justify-between align-middle text-center mt-3 link link-secondary text-white md:text-secondary">
-              <button type="button" onClick={() => document.getElementById('my_modal_1').showModal()}>open modal</button>
+              <button type="button" onClick={() => document.getElementById('my_modal_1').showModal()}>forget password</button>
               <Link to="/register">You have not accaount ?</Link>
             </div>
           </Form>
