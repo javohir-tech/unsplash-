@@ -10,6 +10,7 @@ import {
   ImageInfo,
   LikedImages,
   Login,
+  Profile,
   Register,
   UserPage,
 } from "./Pages";
@@ -72,6 +73,10 @@ function App() {
           path: "/imageInfo/:id",
           element: <ImageInfo />,
         },
+        {
+          path: "/profile",
+          element: <Profile/>
+        }
       ],
     },
 

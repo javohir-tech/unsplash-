@@ -10,6 +10,7 @@ import { useGlobalContext } from "../Hooks/useGlobalContext";
 
 //fireStore
 import { useFireStore } from "../Hooks/useFireStore";
+import { toast } from "react-toastify";
 
 function Image({ image, added }) {
 
@@ -29,6 +30,10 @@ function Image({ image, added }) {
       return image.id == img.id
     })
 
+    if (!authUser.emailVerified) {
+      return toast.info("Email not Verification ")
+    }
+
     if (!allReadyAdded) {
       addDocuments("likedImages", { ...img, uid: authUser.uid })
     } else {
@@ -38,6 +43,10 @@ function Image({ image, added }) {
 
   const AddDownloadImage = (picture) => {
     const allReadyDownload = downloadImages.some((img) => img.id == picture.id)
+
+    if (!authUser.emailVerified) {
+      return toast.info("Email not Verification ")
+    }
 
     if (!allReadyDownload) {
       dispatch({ type: "DOWNLOAD", payload: picture })
