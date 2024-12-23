@@ -26,7 +26,7 @@ export const action = async ({ request }) => {
   }
 
   return {
-    email,
+    email,  
     password,
   };
 }
