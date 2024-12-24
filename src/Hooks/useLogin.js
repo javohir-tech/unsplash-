@@ -13,7 +13,7 @@ export const useLogin = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 dispatch({ type: "LOGIN", payload: user })
-                toast.success("WELCOME BITCH")
+                toast.success("WELCOME ")
             })
             .catch((error) => {
                 const errorMessage = error.message;
