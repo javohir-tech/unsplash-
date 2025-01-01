@@ -22,7 +22,7 @@ export default function LikedImages() {
 
   return (
     <>
-      <div className="container py-5">
+      <div className="container py-5 my-auto h-screen">
         <ResponsiveMasonry
           columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
         >

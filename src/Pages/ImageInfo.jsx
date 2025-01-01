@@ -66,8 +66,8 @@ export default function ImageInfo() {
   const allReadyAdded = likedImages.some((num) => num.id === id)
 
   return (
-    <div className="container my-5">
-      <div className="grid grid-cols-2 items-center w-full liked-image__content">
+    <div className="container my-5 p-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5 md:items-center w-full liked-image__content">
         <img src={urls?.regular} alt="" className="w-max-96 max-h-96 mx-auto rounded-md" />
         <div>
           <p>Yaratilgan Sana: {created_at}</p>

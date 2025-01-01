@@ -69,7 +69,7 @@ function Image({ image, added }) {
             <FaHeart className="w-5 h-5" />
           </span>
           :
-          <span className="top-4 right-4 image-methods z-20" onClick={() => addLikesImages(image)} >
+          <span className="top-4 right-4 image-methods z-20 bg-base-100" onClick={() => addLikesImages(image)} >
             <FaHeart className="w-5 h-5" />
           </span>
       }
@@ -77,10 +77,10 @@ function Image({ image, added }) {
       <span className="absolute bottom-4 left-4 z-20">
         <Link to={`/userpage/${user.id}`} className=" flex gap-3 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">
           <img src={user.profile_image.small} alt="user imag" className="rounded-full" />
-          <h3 className="text-slate-100">{user.name}</h3>
+          <h3 className="text-slate-100">{user.name.split(" ")[0]}</h3>
         </Link>
       </span>
-      <span onClick={() => AddDownloadImage(image)} className="bottom-4 z-20 right-4 image-methods" rel="nofollow">
+      <span onClick={() => AddDownloadImage(image)} className="bottom-4 z-20 right-4 image-methods bg-base-100" rel="nofollow">
 
         <TbDownload className="w-5 h-5" />
 

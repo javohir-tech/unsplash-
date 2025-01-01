@@ -61,10 +61,10 @@ function Navbar() {
                     <header className='navbar '>
                         <div className="navbar-start">
                             <div className="hidden md:flex">
-                                <Link to="/"><FcStackOfPhotos className="w-8 h-8" /></Link>
+                                <Link to="/"><img src="https://unsplash.com/apple-touch-icon.png" alt="brend" className="w-10 h-10" /></Link>
                             </div>
                             <div className="dropdown md:hidden">
-                                <div tabIndex={0} role="button" className="btn m-1 border-0 shadow-none"><FcStackOfPhotos className="w-8 h-8" /></div>
+                                <div tabIndex={0} role="button" className="btn m-1 border-0 shadow-none"><img src="https://unsplash.com/apple-touch-icon.png" className="w-10 h-10" alt="brend" /></div>
                                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                     <NavbarLinks />
                                 </ul>
