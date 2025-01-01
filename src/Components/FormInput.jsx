@@ -1,6 +1,8 @@
 //react icons
 import { FaSearch, FaUser, FaKey } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { GoNumber } from "react-icons/go";
 
 function FormInput({ type, placeholder, name }) {
   return (
@@ -17,6 +19,8 @@ function FormInput({ type, placeholder, name }) {
       {placeholder === "Email" && <MdEmail className="h-5 w-5 opacity-70" />}
       {placeholder === "Password" && <FaKey className="h-4 w-4 opacity-70" />}
       {placeholder === "Password Restart" && <FaKey className="h-4 w-4 opacity-70" />}
+      {placeholder === "Name" && <MdOutlineDriveFileRenameOutline className="h-4 w-4 opacity-70" />}
+      {placeholder === "Number" && <GoNumber className="h-4 w-4 opacity-70" />}
     </label>
   );
 }
