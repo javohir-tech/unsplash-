@@ -63,10 +63,10 @@ export default function Contact() {
     <div className='container  py-10 px-1'>
       <h1 className='font-bold text-xl mb-3'>Biz Bilan Bog'laning </h1>
       <Form onSubmit={handleSumbit} className=' flex  flex-col gap-3'>
-        <input type="text" placeholder="Name" className="input input-bordered w-full" onChange={(e) => setName(e.target.value)} value={name} />
-        <input type="number" placeholder="Number" className="input input-bordered w-full " onChange={(e) => setNumber(e.target.value)} value={number} />
-        <input type="email" placeholder="Email" className="input input-bordered w-full" onChange={(e) => setEmail(e.target.value)} value={email} />
-        <textarea
+        <input required type="text" placeholder="Name" className="input input-bordered w-full" onChange={(e) => setName(e.target.value)} value={name} />
+        <input required type="number" placeholder="Number" className="input input-bordered w-full " onChange={(e) => setNumber(e.target.value)} value={number} />
+        <input required type="email" placeholder="Email" className="input input-bordered w-full" onChange={(e) => setEmail(e.target.value)} value={email} />
+        <textarea required
           onChange={(e) => setMesaage(e.target.value)} value={message}
           class="textarea textarea-bordered block w-full "
           placeholder="Type your message here..."></textarea>
