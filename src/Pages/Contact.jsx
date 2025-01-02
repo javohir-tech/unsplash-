@@ -22,12 +22,12 @@ export default function Contact() {
 
   const handleSumbit = (e) => {
     e.preventDefault()
-    const message = `
+    const Message = `
       Unsplash Side!
       name : ${name}
       number: ${number}
       email: ${email}
-      message: ${email}
+      message: ${message}
     `
     const token = `7911063414:AAFP6wlYH5rmwMsnlRxEhNqoAcyFPp79Ii8`
     const bot_id = 1896479864
@@ -39,7 +39,7 @@ export default function Contact() {
       },
       body: JSON.stringify({
         chat_id: bot_id,
-        text: message,
+        text: Message,
       })
     })
       .then((response) => response.json())
