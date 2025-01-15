@@ -62,7 +62,7 @@ export default function Login() {
             </div>
             <div className="flex flex-col gap-5 md:flex-row">
               <button type="submit" className="btn btn-primary btn-sm grow md:btn-md">
-                Register
+                Login
               </button>
               <button onClick={singUpWithGoogle} type="button" className="btn btn-secondary btn-sm grow md:btn-md">
                 <span>Google</span>
