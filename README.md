@@ -1,11 +1,11 @@
 # 📸 Unsplash Image Gallery  
 
-![Unsplash Image Gallery](./src/assets/gallery-preview.png)  
+![Unsplash Image Gallery](./src/assets/image.png)(./src/assets/gallery-preview.png)  
 
 ## 📌 About the Project  
 **Unsplash Image Gallery** is a modern web application that allows users to explore, search, and view high-quality images using the **Unsplash API** and **Firebase** for real-time data storage. The project is built with **ReactJS** and styled with **Tailwind CSS**, featuring an elegant **grid layout** and **infinite scrolling**, providing a smooth and interactive experience.  
 
-🔗 **Live Demo:** [unsplash.suvonov-javohir.uz](https://unsplash.suvonov-javohir.uz/)  
+🔗 **Live Demo:** [unsplash.suvonov-javohir.uz](http://suvonov-javohir.uz)  
 
 ---
 
